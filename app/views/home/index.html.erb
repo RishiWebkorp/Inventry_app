@@ -1,0 +1,23 @@
+<main class="home-page page-body">
+  <%= render 'shared/heading' %>
+
+  <section class="jumbotron bg-white">
+    <h1>
+      Inventory Management System
+    </h1>
+
+    <div class="lead">
+      Get your inventory related tasks done here!
+    </div>
+
+    <%= image_tag("inventory-management-featured.jpeg", alt: "Inventory Management System") %>
+
+    <% if !user_signed_in? %>
+      <div class="button-div">
+        <%= link_to "Sign up ", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+        <br>
+        <%= link_to "Sign in ", new_user_session_path , class: "btn btn-lg btn-primary" %>
+      </div>
+    <% end %>
+  </section>
+</main>
