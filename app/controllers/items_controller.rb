@@ -35,6 +35,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
     @brand = Brand.find_by_id(@item&.brand)
     @category = Category.find_by_id(@item&.category)
   end

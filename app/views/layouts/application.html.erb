@@ -42,10 +42,6 @@
               <%= link_to "Items", items_path %>
             </li>
 
-            <li class="nav-item">
-              <%= link_to "Users", user_session_path if user_signed_in? %>
-            </li>
-
             <li class="nav-item dropdown">
               <a href="#" class="dropdown-toggle user-dropdown" data-toggle="dropdown">
                 <% if user_signed_in? %>
@@ -57,16 +53,19 @@
 
                <ul class="dropdown-menu user-menu <% if !user_signed_in? %> login <% end %>">
                 <% if user_signed_in? %>
-
                   <li class="nav-item">
                     <% if user_signed_in? %>
                       <%= link_to "All Allotments", allotments_path if current_user.admin? %>
                     <% end %>
                   </li>
-                  <li class="divider"></li>
+                  <li class="nav-item">
+                    <% if user_signed_in? %>
+                      <%= link_to "Edit Profile", edit_user_registration_path if current_user.admin? %>
+                    <% end %>
+                  </li>
 
                   <li>
-                    <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+                    <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }%>
                   </li>
                 <% end %>
               </ul>

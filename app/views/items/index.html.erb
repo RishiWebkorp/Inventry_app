@@ -6,7 +6,7 @@
   <% if user_signed_in? && current_user.admin? %>
     <%= render 'manage', items: @items %>
     
-  <% else %>
+  <% elsif user_signed_in? %>
     <%= render 'shared/assest_cards', asset_type: 'Item' , assets: @items %>
   <% end %>
 </main>
