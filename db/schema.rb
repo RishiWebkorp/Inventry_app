@@ -11,7 +11,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_12_26_211357) do
-  create_table "allotments", charset: "utf8mb4", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "allotments", force: :cascade do |t|
     t.datetime "dealloted_at"
     t.integer "allotment_quantity"
     t.bigint "user_id"
@@ -22,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_211357) do
     t.index ["user_id"], name: "index_allotments_on_user_id"
   end
 
-  create_table "brands", charset: "utf8mb4", force: :cascade do |t|
+  create_table "brands", force: :cascade do |t|
     t.string "name"
     t.string "manufacturer"
     t.string "manufacturer_email"
@@ -31,14 +34,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_211357) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "categories", charset: "utf8mb4", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "issues", charset: "utf8mb4", force: :cascade do |t|
+  create_table "issues", force: :cascade do |t|
     t.text "issue_description"
     t.datetime "solved_at"
     t.text "feedback"
@@ -50,11 +53,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_211357) do
     t.index ["user_id"], name: "index_issues_on_user_id"
   end
 
-  create_table "items", charset: "utf8mb4", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.integer "in_stock"
-    t.decimal "price", precision: 10
+    t.decimal "price"
     t.integer "minimum_required_stock"
     t.integer "quantity"
     t.integer "total_stock"
@@ -67,7 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_211357) do
     t.index ["category_id"], name: "index_items_on_category_id"
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
