@@ -1,10 +1,11 @@
 databases:
-  - name: postgres
+  - name: inventryapp
+    databaseName: inventryapp_production
     ipAllowList: []
 
 services:
   - type: web
-    name: rails 
+    name: rails
     env: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec rails s"
