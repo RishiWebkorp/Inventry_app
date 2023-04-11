@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  
+  before_action :set_item_id, only: %i[edit show destroy]
 
   def index
     @items = Item.all
@@ -19,7 +21,6 @@ class ItemsController < ApplicationController
   end 
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
@@ -35,13 +36,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @brand = Brand.find_by_id(@item&.brand)
     @category = Category.find_by_id(@item&.category)
   end
 
   def destroy
-    Item.find(params[:id]).destroy
+    @brand.destroy
     redirect_to items_url, flash: { success: "Item deleted." }
   end
 
@@ -50,4 +50,10 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :description, :price, :minimum_required_stock, :quantity, :total_stock, :procurement_time_in_weeks, :brand_id, :category_id)
   end
+
+  def set_item_id
+    @item = Item.find(params[:id])
+  end
+
+  
 end

@@ -13,6 +13,10 @@
 !/log/.keep
 !/tmp/.keep
 
+vendor/bundle/*
+vendor/cache/*
+vendor/plugins/*
+
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
 !/tmp/pids/

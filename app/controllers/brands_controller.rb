@@ -1,5 +1,7 @@
 class BrandsController < ApplicationController
 
+  before_action :set_brand_id, only: %i[edit update destroy show]
+
   def index
     @brands = Brand.all
   end
@@ -18,11 +20,9 @@ class BrandsController < ApplicationController
   end
 
   def edit
-    @brand = Brand.find(params[:id])
   end
 
   def update
-    @brand = Brand.find(params[:id])
     if @brand.update(brand_params)
       redirect_to @brand, flash: {success: "Brand updated successfully"}
     else
@@ -31,11 +31,9 @@ class BrandsController < ApplicationController
   end
 
   def show
-    @brand = Brand.find(params[:id])
   end
 
   def destroy
-    @brand = Brand.find(params[:id])
     @brand.destroy
     redirect_to root_path, flash: { success: "Brand deleted." }, status: 303
   end
@@ -44,7 +42,10 @@ class BrandsController < ApplicationController
 
   def brand_params
     params.require(:brand).permit(:name, :manufacturer, :manufacturer_email, :manufacturer_office)
+  end 
+  
+  def set_brand_id
+    @brand = Brand.find(params[:id])
   end
-
 
 end
