@@ -20,6 +20,11 @@
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
 
                   <div class="form-outline mb-4">
+                    <%= f.label :name %><br />
+                    <%= f.text_field :name, autofocus: true, autocomplete: "Name", class: "form-control form-control-lg" %>
+                  </div>
+
+                  <div class="form-outline mb-4">
                     <%= f.label :email %><br />
                     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg" %>
                   </div>

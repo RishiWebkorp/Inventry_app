@@ -64,6 +64,12 @@
                     <% end %>
                   </li>
 
+                  <li class="nav-item">
+                    <% if user_signed_in? %>
+                      <%= link_to "All Users", users_details_home_index_path if current_user.admin? %>
+                    <% end %>
+                  </li>
+
                   <li>
                     <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }%>
                   </li>
