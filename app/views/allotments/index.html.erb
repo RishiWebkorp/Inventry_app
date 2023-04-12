@@ -40,25 +40,6 @@
           <tr>
             <td>
               <%= get_user_name_by_id allotment.user_id %>
-            </td>
-
-            <td>
-              <%= item_display_name @item %>
-            </td>
-
-            <td class="count">
-              <%= allotment.allotment_quantity %>
-            </td>
-
-            <td>
-              <%= allotment.created_at %>
-            </td>
-
-            <td>
-              <%= get_deallotment_stats allotment %>
-            </td>
-
-            <td>
               <% if current_user.admin? && allotment.dealloted_at.nil? %>
                 <div class="dropdown option-dropdown">
                   <a href="#" class="nav-link dropdown-toggle user-dropdown border d-inline btn" data-toggle="dropdown">
@@ -76,6 +57,22 @@
                   </ul>
                 </div>
               <% end %>
+            </td>
+
+            <td>
+              <%= item_display_name @item %>
+            </td>
+
+            <td class="count">
+              <%= allotment.allotment_quantity %>
+            </td>
+
+            <td>
+              <%= allotment.created_at %>
+            </td>
+
+            <td>
+              <%= get_deallotment_stats allotment %>
             </td>
           </tr>
         <% end %>
