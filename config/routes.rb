@@ -2,7 +2,14 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions'
     }
-  root 'home#index'
+
+    resources :home do
+      collection do
+        get 'users_details', to: 'home#user_show'
+      end
+    end
+
+  root 'home#index' 
   
   resources :allotments do
     member do

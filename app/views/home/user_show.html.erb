@@ -1,0 +1,59 @@
+<% provide(:title, 'All Users Details') %>
+
+<main class="page-body">
+  <%= render 'shared/heading' %>
+
+  <% if @users.blank? %>
+    <div>
+      NO user have been made as of now.
+    </div>
+
+  <% else %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>
+            Name
+          </th>
+
+          <th>
+            Email
+          </th>
+
+          <th>
+            Created At
+          </th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |u| %>
+          <tr>
+            <td>
+              <%= u.name %>
+            </td>
+
+            <td class="count">
+              <%= u.email %>
+            </td>
+
+            <td>
+              <%= u.created_at %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <%
+=begin%>
+ <% if current_user.admin? %>
+    <div class="button-div">
+      <%= link_to "New Allotment", new_allotment_path, class: "btn btn-lg btn-primary" %>
+    </div>
+  <% end %> 
+<%
+=end%>
+</main>
