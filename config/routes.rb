@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
       member do
         get 'edit_user', to: 'home#edit_user'
-        patch 'update_user ', to: 'home#update_user'
+        patch 'update_user', to: 'home#update_user'
         delete 'destroy_user', to: 'home#destroy_user'
       end
     end
