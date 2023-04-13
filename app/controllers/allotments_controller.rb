@@ -41,9 +41,10 @@ class  AllotmentsController < ApplicationController
   end
 
   def deallot
-    if @allotment.update_attribute(:dealloted_at,DateTime.now)
-      @item.update_attribute(:in_stock, (@item.in_stock + @allotment.allotment_quantity))
-      redirect_to allotments_url, flash:{success: "Item dealloted successfully."}
+    @allotment.item.in_stock =  @allotment.item.in_stock + @allotment.allotment_quantity
+    @allotment.item.save
+    if @allotment.update_attribute(:dealloted_at, DateTime.now)
+      redirect_to root_path, flash:{success: "Item dealloted successfully."}
     end
   end
 

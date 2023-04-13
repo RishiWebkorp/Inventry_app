@@ -12,17 +12,15 @@
     <table class="table">
       <thead>
         <tr>
-          <th>
-            Name
-          </th>
+          <th>Name</th>
 
-          <th>
-            Email
-          </th>
+          <th>Email</th>
 
-          <th>
-            Created At
-          </th>
+          <th>Created At</th>
+
+          <th>Role</th>
+
+          <th>Edit User</th>
 
         </tr>
       </thead>
@@ -40,6 +38,16 @@
 
             <td>
               <%= u.created_at %>
+            </td>
+
+            <td>
+              <%= "Admin" if u.admin? %>
+              <%= "User" unless u.admin? %>
+            </td>
+
+            <td>
+              <%= link_to "Edit", edit_user_home_path(u), class: "btn btn-danger fa-solid fa-trash" %>
+              <%= link_to 'destroy', destroy_user_home_path(u),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger fa-solid fa-trash" %>
             </td>
           </tr>
         <% end %>
