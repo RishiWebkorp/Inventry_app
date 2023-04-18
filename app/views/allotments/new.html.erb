@@ -25,9 +25,21 @@
         </div>
 
         <div class="form-group">
+          <%= f.label :category_id %>
+
+          <div class="select-attribute">
+            <%= f.collection_select(:category_id, Category.all, :id, :name, include_blank: '--Not Allocated--') %>
+          </div>
+        </div>
+
+        
+
+        <div class="form-group">
           <%= f.label :allotment_quantity, "New Allotment quantity" %>
           <%= f.number_field :allotment_quantity, min: 0, max: 1000, class: 'form-control' %>
         </div>
+
+        
 
         <%= f.submit "Allot Item to User" , class: "btn btn-primary form-control" %>
       <% end %>

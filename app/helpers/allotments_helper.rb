@@ -12,4 +12,5 @@ module AllotmentsHelper
     return "N/A" if user.nil?
     user.email
   end
+
 end

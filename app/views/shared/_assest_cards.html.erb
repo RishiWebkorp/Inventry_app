@@ -9,15 +9,15 @@
       <div class="card bg-light">
         <div class="card-body">
           <h2 class="card-title">
-            <% if asset.instance_of? User %>
-              <%= link_to ((asset == current_user) ? (asset.name + " (You)") : asset.name), asset %>
-              
-            <% elsif asset.instance_of? Item %>
-            <%= link_to item_display_name(asset), asset %>
-              
-            <% else %>
-              <%= link_to asset.name, asset %>
-            <% end %>
+              <% if asset.instance_of? User %>
+                <%= link_to ((asset == current_user) ? (asset.name + " (You)") : asset.name), asset %>
+                
+              <% elsif asset.instance_of? Item %>
+              <%= link_to item_display_name(asset), asset %>
+                
+              <% else %>
+                <%= link_to asset.name, asset %>
+              <% end %>
           </h2>
         </div>
       </div>

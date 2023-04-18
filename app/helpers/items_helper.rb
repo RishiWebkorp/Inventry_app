@@ -7,7 +7,7 @@ module ItemsHelper
       "#{get_brand_name_by_id item.brand_id} #{item.name} (Qty- #{item.in_stock}) -- #{item.category.name}"
     else
       return "<Item deleted>" if item.nil?
-      "#{get_brand_name_by_id item.brand_id} #{item.name}"
+      "#{item.name}"
     end
   end
 
