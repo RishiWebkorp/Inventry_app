@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  
+
   before_action :set_item_id, only: %i[edit show destroy update]
+  include Items::ItemModule
 
   def index
     @items = Item.all
@@ -11,28 +12,14 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item_data = item_params.merge(in_stock: item_params[:total_stock])
-    @item = Item.new(item_data)
-    if @item.save
-      redirect_to @item, flash: {success: "Item created successfully"}
-    else
-      render 'new'
-    end
-  end 
+    item_create
+  end
 
   def edit
   end
 
   def update
-    previous_quantity = @item&.total_stock
-    if((item_params[:total_stock].to_i - previous_quantity + @item.in_stock) < 0)
-      redirect_to edit_item_path(@item), flash: { warning: "Currently more items are alloted than entered values." }
-    elsif @item.update(item_params)
-      redirect_to @item, flash: { success: "Item updated successfully." }
-      @item.in_stock += (@item.total_stock - previous_quantity)
-    else
-      render 'edit'
-    end
+    item_update
   end
 
   def show
@@ -55,5 +42,5 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  
+
 end
