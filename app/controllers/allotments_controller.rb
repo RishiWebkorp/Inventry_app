@@ -1,6 +1,7 @@
 class  AllotmentsController < ApplicationController
   before_action :set_allotments_id, only: %i[edit deallot update]
-  
+  before_action :update_in_stock, only: %i[update]
+
   def index
     @allotments = Allotment.all
   end
@@ -31,10 +32,8 @@ class  AllotmentsController < ApplicationController
   end
 
   def update
-    if @item.in_stock < update_quantity_params[:allotment_quantity].to_i
-      redirect_to edit_allotment_path(@item), flash: { warning: "Total stock of this item is NOT sufficient for this allotment." }
-    elsif @allotment.update(update_quantity_params)
-      successful_stock_update
+    if @allotment.item.save && @allotment.update(update_quantity_params)
+      redirect_to edit_allotment_path, flash: { warning: "Updated" }
     else
       render 'edit' 
     end
@@ -49,6 +48,10 @@ class  AllotmentsController < ApplicationController
   end
 
   private
+
+  def update_in_stock
+    @allotment.item.in_stock = @allotment.item.in_stock + @allotment.allotment_quantity - params[:allotment][:allotment_quantity].to_i
+  end
 
   def allotment_params
     params.require(:allotment).permit(:user_id, :item_id, :category_id, :allotment_quantity)
