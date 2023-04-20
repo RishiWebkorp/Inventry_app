@@ -12,6 +12,10 @@
         </th>
 
         <th>
+          Category
+        </th>
+
+        <th>
           Total stock
         </th>
 
@@ -23,9 +27,6 @@
           Minimum Required Stock
         </th>
 
-        <th>
-          Procurement Time
-        </th>
       </tr>
     </thead>
 
@@ -53,6 +54,10 @@
           </td>
 
           <td class="count">
+            <%= item.category.name %>
+          </td>
+
+          <td class="count">
             <%= item.total_stock %>
           </td>
 
@@ -64,9 +69,6 @@
             <%= item.minimum_required_stock %>
           </td>
 
-          <td class="count">
-            <%= "#{item.procurement_time_in_weeks} weeks" %>
-          </td>
         </tr>
       <% end %>
     </tbody>
